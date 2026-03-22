@@ -45,8 +45,10 @@ Benutzer → View → Controller → Model → Controller → View
 ### Controller
 - handle_input()  
 - process_operation()  
+- run()
 
 ### View
 - display_result()  
 - display_error()  
 - get_input()  
+- get_operation()

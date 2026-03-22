@@ -1,4 +1,4 @@
-# Projekt: Einfacher Taschenrechner
+# Projekt: Taschenrechner V.0.1.0
 
 ## Ziel
 Der Taschenrechner soll grundlegende mathematische Berechnungen durchführen können.  
