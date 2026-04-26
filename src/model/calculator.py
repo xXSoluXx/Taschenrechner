@@ -1,103 +1,56 @@
 import math
 
-# als nächstes noch kehrwert 
-# Kehrwert (Reziprokwert)
 
-# Sie berechnet:
-
-# 1/x
-
-# Darstellung
-# f(x) = 1/x
-# 	​
-
-# Beispiele
-# 1/x von 2 → 1÷2=0,5
-# 1/x von 4 → 1÷4=0,25
-# 1/x von 0,5 → 1÷0,5=2
-
-# Wichtig
-# Bei 0 funktioniert das nicht 
-# Division durch 0 ist nicht definiert
-
-
-# Dann noch die Prozentrechnung mit einfügen 
-
-# Typische Anwendungen
-# 1. Rabatt berechnen 
-
-# Beispiel:
-# Ein Produkt kostet 100 €, Rabatt 20%
-
-# Eingabe:
-
-# 100 - 20 %
-
-# Ergebnis: 80 €
-
-# Der Rechner versteht:
-
-# „Zieh 20% von 100 ab“
-
-# 2. Aufschlag berechnen 
-
-# Beispiel:
-# 100 € + 19% MwSt
-
-# Eingabe:
-
-# 100 + 19 %
-
-# Ergebnis: 119 €
-
-# 3. Prozentwert berechnen
-
-# Beispiel:
-# Wie viel sind 20% von 50?
-
-# Eingabe:
-
-# 50 × 20 %
-
-# Ergebnis: 10
-
-# Wie der Rechner denkt
-
-# Der %-Button bezieht sich immer auf die vorherige Zahl.
-
-# Muster:
-
-# A + B % → A + (B% von A)
-# A - B % → A - (B% von A)
-# A × B % → B% von A''
-
-
-# modulo erstmal zur seite packen das kommt nicht in den normalen Standar-Rechner
  
-
-
 class Calculator:
 
+    # Additions-berechnung 
     def add(self, a, b):
         return a + b
     
+    # Subtraktions-berechnung
     def subtract(self, a, b):
         return a - b 
     
+    # Multiplikations-berechnung 
     def multiply(self, a, b):
         return a * b
     
+    # Division-berechnung
     def divide(self, a, b):
-        return a / b 
-
-    def modulo(self, a, b):
-        return a % b
-
-    def potenz(self, a, b):
+        if b == 0:
+            raise ZeroDivisionError("Teilen durch 0 nicht möglich")
+        return a / b  
+    
+    # Potenz-berechnung
+    def power(self, a, b):
         return a ** b
     
+    # Wurzel-berechnung
     def root(self, a):
+        if a < 0:
+            raise ValueError("Ungültige Eingabe")
         return math.sqrt(a)
 
+    # Kehrwert-berechnung
+    def reciprocal(self, x):
+        if x == 0:
+            raise ZeroDivisionError("Teilen durch 0 nicht möglich")
+        return 1 / x
+
+    # Prozent-berechnung
+    def percent(self, a, b, operator):
+        if operator == "+":
+            return a + (a * b / 100)
+        elif operator == "-":
+            return a - (a * b / 100)
+        elif operator == "*":
+            return a * (b / 100)
+        elif operator == "/":
+            if b == 0:
+                raise ZeroDivisionError("Teilen durch 0 nicht möglich")
+            return a / (b / 100)
+        else:
+            raise ValueError("Ungültiger Operator")
 
     
