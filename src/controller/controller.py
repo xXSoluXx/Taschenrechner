@@ -31,13 +31,31 @@ class Controller:
 
                     # Dezimal-Komma in Punkt umwandeln
                     a = float(a.replace(",", "."))
-                    b = float(b.replace(",", "."))
+                    
+                    # Prozent zuerst behandeln!
+                    if "%" in b:
+                        percent_value = float(b.replace("%", "").replace(",", "."))
 
-                    # ---- Prozentrechnung ----
-                    if "%" in expression:
-                        b = float(b.replace("%", "").replace(",", "."))
-                        result = self.calc.percent(a, b, op)
+                        if op in ["+", "-"]:
+                            percent = a * percent_value / 100
+
+                            if op == "+":
+                                result = a + percent
+                            else:
+                                result = a - percent
+
+                        elif op == "*":
+                            result = a * (percent_value / 100)
+
+                        elif op == "/":
+                            if percent_value == 0:
+                                raise ZeroDivisionError
+                            result = a / (percent_value / 100)
+
                         return self.format_result(result)
+
+                    # erst HIER normal in float umwandeln
+                    b = float(b.replace(",", "."))
 
                     # ---- Standardoperationen ----
                     if op == "+":
@@ -61,7 +79,7 @@ class Controller:
 
         # ---------------- FEHLERBEHANDLUNG ----------------
         except ZeroDivisionError:
-            return "Kann nicht durch 0 teilen"
+            return "Nicht durch 0 Teilbar"
 
         except ValueError:
             return "Ungültige Eingabe"
@@ -93,7 +111,7 @@ class Controller:
             return self.format_result(result)
 
         except ZeroDivisionError:
-            return "Division durch 0"
+            return "Nicht durch 0 Teilbar"
 
         except Exception:
             return "Error"
@@ -106,7 +124,7 @@ class Controller:
             return self.format_result(result)
 
         except ValueError:
-            return "Keine Wurzel aus negativen Zahlen"
+            return "Error(negative Zahl)"
 
         except Exception:
             return "Error"

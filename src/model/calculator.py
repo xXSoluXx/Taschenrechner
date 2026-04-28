@@ -29,7 +29,7 @@ class Calculator:
             ZeroDivisionError: Wenn b = 0 ist.
         """
         if b == 0:
-            raise ZeroDivisionError("Teilen durch 0 nicht möglich")
+            raise ZeroDivisionError("Nicht durch 0 Teilbar")
         return a / b
 
     # ---------------- ERWEITERTE FUNKTIONEN ----------------
@@ -57,7 +57,7 @@ class Calculator:
             ZeroDivisionError: Wenn x = 0 ist.
         """
         if x == 0:
-            raise ZeroDivisionError("Teilen durch 0 nicht möglich")
+            raise ZeroDivisionError("Nicht durch 0 Teilbar")
         return 1 / x
 
     # ---------------- PROZENTRECHNUNG ----------------
@@ -90,7 +90,7 @@ class Calculator:
 
         elif operator == "/":
             if b == 0:
-                raise ZeroDivisionError("Teilen durch 0 nicht möglich")
+                raise ZeroDivisionError("Nicht durch 0 Teilbar")
             return a / (b / 100)
 
         else:
